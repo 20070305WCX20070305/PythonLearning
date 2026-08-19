@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人主页 · 信息名片</title>
+    <!-- 使用 Font Awesome 图标库 (免费版本) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* 全局重置 & 背景 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            padding: 20px;
+        }
+
+        /* 主卡片 - 毛玻璃效果 */
+        .card {
+            max-width: 420px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 40px 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            text-align: center;
+            color: #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* 头像 */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 52px;
+            font-weight: 600;
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(245, 87, 108, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.25);
+            user-select: none;
+        }
+
+        /* 姓名 & 头衔 */
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.08);
+            display: inline-block;
+            padding: 4px 20px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* 简介文字 */
+        .bio {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 28px;
+            padding: 0 4px;
+        }
+
+        /* 社交链接按钮组 */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 22px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.25s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            transform: scale(1.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 信息标签 (如 地区/邮箱) */
+        .info-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 22px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .info-item i {
+            width: 20px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .info-item a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
+            transition: color 0.2s;
+        }
+
+        .info-item a:hover {
+            color: #ffffff;
+            border-bottom-color: #f5576c;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 20px;
+            }
+            .avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 44px;
+            }
+            .name {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <!-- 头像区域 (可替换为图片) -->
+        <div class="avatar">👨‍💻</div>
+
+        <!-- 姓名 -->
+        <h1 class="name">Chenxuan Wang</h1>
+
+        <!-- 职位/标签 -->
+        <span class="title">物理学院 本科生</span>
+
+        <!-- 个人简介 -->
+        <p class="bio">
+            北京大学物理学院本科生
+        </p>
+
+        <!-- 社交图标 (FontAwesome) -->
+        <div class="social-links">
+            <!-- 微信 (使用 fa-weixin) -->
+            <a href="#" title="微信"><i class="fab fa-weixin"></i></a>
+            <!-- 微博 -->
+            <a href="#" title="微博"><i class="fab fa-weibo"></i></a>
+            <!-- GitHub -->
+            <a href="https://github.com/20070305WCX20070305" title="GitHub"><i class="fab fa-github"></i></a>
+            <!-- 哔哩哔哩 -->
+            <a href="#" title="B站"><i class="fab fa-bilibili"></i></a>
+            <!-- 邮箱 (信封) -->
+            <a href="2500011544@stu.pku.edu.cn" title="发送邮件"><i class="fas fa-envelope"></i></a>
+        </div>
+
+        <!-- 额外联系信息 -->
+        <div class="info-tags">
+            <div class="info-item">
+                <i class="fas fa-map-pin"></i>
+                <span> 中国 · 西安</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-globe"></i>
+                <a href="#">xiaoming.dev</a>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-code"></i>
+                <span>“无法超越群星的界限”</span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
