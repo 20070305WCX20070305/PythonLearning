@@ -1,0 +1,69 @@
+# ============================================================
+# pyproject.toml —— 项目元数据、依赖、打包与工具配置
+#
+# 常用命令：
+#   pip install -e .           开发安装（只装运行依赖）
+#   pip install -e ".[dev]"    开发安装 + 测试工具
+#   python -m build            构建 wheel 与 sdist（需先 pip install build）
+# ============================================================
+
+[build-system]
+# 构建后端：setuptools >= 64 才支持 PEP 660 可编辑安装
+requires = ["setuptools>=64.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# 发行名（pip install 用的名字），一般全小写；包目录名可以不同但建议一致
+name = "myproject"
+# 语义化版本：主版本.次版本.修订号
+version = "0.1.0"
+description = "一个科研数据处理项目模板（一句话简介）"
+# 长描述读取的文件；不写的话 PyPI 页面会空白
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "你的名字", email = "you@example.com" },
+]
+keywords = ["science", "data-pipeline", "research"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+]
+
+# 运行依赖：只用标准库时留空；按需添加，例如：
+# dependencies = ["pandas>=2.0", "h5py>=3.8"]
+dependencies = []
+
+[project.optional-dependencies]
+# 开发依赖：命令 pip install -e ".[dev]" 安装
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.scripts]
+# 安装后生成可执行命令 myproject，调用 myproject.cli 模块的 main 函数
+myproject = "myproject.cli:main"
+
+[project.urls]
+# 发布到 PyPI 时展示的链接；不需要可整段删掉
+# Homepage = "https://github.com/yourname/myproject"
+
+[tool.setuptools.packages.find]
+# src 布局：真实包在 src/ 下，避免测试时误导入项目根目录
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+
+[tool.coverage.run]
+source = ["myproject"]
+
+[tool.coverage.report]
+# 覆盖率统计中排除的行（例如主程序入口）
+exclude_lines = [
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]

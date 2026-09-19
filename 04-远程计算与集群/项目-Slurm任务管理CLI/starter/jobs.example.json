@@ -1,0 +1,39 @@
+{
+  "defaults": {
+    "partition": "compute",
+    "cpus": 1,
+    "mem": "2G",
+    "time": "00:30:00",
+    "retries": 2,
+    "result_dir": "results"
+  },
+  "jobs": [
+    {
+      "name": "sim-sweep-01",
+      "command": "python3 sim.py --param 1.0 --out results/param-1.0.csv",
+      "cpus": 2,
+      "mem": "4G",
+      "time": "01:00:00",
+      "retries": 3,
+      "result_dir": "results/sim-sweep-01"
+    },
+    {
+      "name": "monte-carlo",
+      "command": "python3 monte_carlo.py --samples 10000000 --seed 42 --out results/mc.csv",
+      "cpus": 4,
+      "mem": "8G",
+      "time": "04:00:00",
+      "retries": 1,
+      "result_dir": "results/monte-carlo"
+    },
+    {
+      "name": "fit-curve",
+      "command": "python3 fit.py --input data/points.csv --out results/fit.json",
+      "cpus": 1,
+      "mem": "1G",
+      "time": "00:10:00",
+      "retries": 0,
+      "result_dir": "results/fit-curve"
+    }
+  ]
+}
