@@ -75,11 +75,11 @@ Windows 侧如也想用 SSH，可在 PowerShell 里重复 `ssh-keygen` 生成第
 
 ## 4. 仓库位置策略
 
-| 位置 | 路径 | 适合 |
-| --- | --- | --- |
-| WSL 家目录（推荐） | `~/projects/xxx` | 日常代码：ext4 性能好，权限、符号链接正常 |
-| Windows D 盘 | `/mnt/d/A王晨暄/...` | 已有仓库（如本仓库）、需要 Windows 侧直接访问的资料 |
-| Windows 侧访问 WSL | `\\wsl$\Ubuntu-24.04\home\<用户名>` | 备份、查看 |
+| 位置               | 路径                                  | 适合                                                |
+| ------------------ | ------------------------------------- | --------------------------------------------------- |
+| WSL 家目录（推荐） | `~/projects/xxx`                    | 日常代码：ext4 性能好，权限、符号链接正常           |
+| Windows D 盘       | `/mnt/d/A王晨暄/...`                | 已有仓库（如本仓库）、需要 Windows 侧直接访问的资料 |
+| Windows 侧访问 WSL | `\\wsl$\Ubuntu-24.04\home\<用户名>` | 备份、查看                                          |
 
 `/mnt/d` 的限制：批量小文件操作慢；`chmod` 不生效；换行符容易混乱。**大项目请放 `~/projects`。**
 
@@ -113,10 +113,10 @@ data/
 
 ## 7. 自测清单
 
-- [ ] 两套环境 `git config --global --list` 都有正确身份
-- [ ] `ssh -T git@github.com` 成功
-- [ ] 能说清 `~/projects` 与 `/mnt/d` 的取舍
-- [ ] 知道 `.gitignore` 该写什么（虚拟环境、缓存、数据、日志）
+- [X] 两套环境 `git config --global --list` 都有正确身份
+- [X] `ssh -T git@github.com` 成功
+- [X] 能说清 `~/projects` 与 `/mnt/d` 的取舍
+- [X] 知道 `.gitignore` 该写什么（虚拟环境、缓存、数据、日志）
 
 ## 参考资料
 
